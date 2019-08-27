@@ -1,0 +1,123 @@
+.all{
+    padding: 0 15px;
+    margin: 10px auto;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    color: #fff;
+    transition: all 0.3s;
+    width: 100%;
+    background:#000000c4;
+}
+
+.sidebar-header {
+    text-align: right;
+    color: white;
+    font-size: 30px;
+}
+
+.sb{
+    background: #7386D5;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 46px;
+    text-align: center;
+    margin-left: 100px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.sb p{
+    font-size: 15px;
+    margin-left: -12px;
+    font-weight: 100;
+}
+
+.sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+.sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+.sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+}
+.activee{
+    color: blue !important;
+}
+.custom-select{
+    width: 35%;
+    margin: 0 10px;
+}
+.btn{
+    min-width: 75px;
+    margin-right:5px;
+}
+.button{
+    text-align: right;
+    padding-right: 0px;
+}
+.table{
+    text-align: center;
+    margin-top: 10px;
+}
+.form-control{
+    border-radius: 25px;
+    width: 150px;
+    margin-right: 5px;
+}
+.fa-trash{
+    margin-left: 15px;
+    color: red;
+}
+.fa-star{
+    margin-left: 15px;
+    color: green;
+}
