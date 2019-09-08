@@ -3,7 +3,7 @@
         List Product
     </div>
     <div class="card-body">
-        Filter by:<input type="text"class="text"><br>
+        Filter by:<input type="text"class="text"><button class="btn btn-danger cong" [routerLink]="['/cart']">Go to cart</button><br>
         <h4>Filtered by: </h4>
         <table class="table table-striped table-dark">
             <thead>
@@ -19,8 +19,12 @@
             </thead>
             <tbody>
                 <tr *ngFor='let p of listproducts'>
-                    <th scope="row"><img *ngIf='isShow' src="assets/images/download.jpg"></th>
-                    <td>{{p.productName}}</td>
+                    <td scope="row"><a [routerLink]="['/product',p.productId]"><img *ngIf='isShow' src="assets/images/download.jpg"></a></td>
+                    <td>
+                        <a [routerLink]="['/product',p.productId]">
+                            {{p.productName}}
+                        </a>
+                    </td>
                     <td>{{p.productCode}}</td>
                     <td>{{p.releaseDate}}</td>
                     <td>{{p.price}}</td>

@@ -1,0 +1,34 @@
+<h3>Cart</h3>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col"><button class="btn btn-primary">Hien image</button></th>
+            <th scope="col">Product</th>
+            <th scope="col">Code</th>
+            <th scope="col">Available</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">5 Star Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let item of items'>
+            <th scope="row"><a [routerLink]="['/product',item.productId]"><img src="assets/images/download.jpg"></a></th>
+            <td>
+                <a [routerLink]="['/product',item.productId]">
+                    {{item.productName}}
+                </a>
+            </td>
+            <td>{{item.productCode}}</td>
+            <td>{{item.releaseDate}}</td>
+            <td>{{item.price}}</td>
+            <td><button class="btn btn-success tru" (click) = "tru(item.productId)">-</button>{{item.soluong}}<button class="btn btn-warning cong" (click) = "cong(item.productId)">+</button></td>
+            <td>{{item.starRating}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">Tong Tien</td>
+            <td>${{ tong() | number }}</td>
+        </tr>
+    </tbody>
+</table>

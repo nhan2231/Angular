@@ -1,27 +1,28 @@
 <div class="card ">
     <div class="card-header">
-      Leaf Rake
+      {{product.productName}}
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-2">
                 <p>
-                    Name: <br>Code: <br>Description: <br><br>
+                    Name:<br>Code: <br>Description: <br>
                     Availability: <br>Price: <br>5 Star Rating: <br>
                 </p>
             </div>
-            <div class="col-2">
+            <div class="col-4">
                 <p>
-                    Leaf Rake<br>GDN-0011<br>Leaf rake with 48-inch wooden handle.<br>
-                    March 19,2016<br>$19.95<br>3.2
+                    {{product.productName}}<br>{{product.productCode}}<br>{{product.description}}<br>
+                    {{product.releaseDate}}<br>{{product.price}}<br>{{product.starRating}}
                 </p>
             </div>
-            <div class="cc col-8">
+            <div class="cc col-6">
                 <p><img src="assets/images/download.jpg" style="width:50%"></p>
             </div>
         </div>
     </div>
     <div class="card-footer">
-      &larr; Back
+        <button class="btn btn-warning" (click) = "onBack()">Back</button>
+        <button class="btn btn-success" (click) = "addToCart(product)">Buy</button>
     </div>
 </div>
