@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
-  students: [
-    { ID: 1, FirstMidName: "Carson", LastName: "Alexander", EnrollmentDate: "2005-09-01" },
+  students = [
+    { ID: 1, 'FirstMidName': "Carson", LastName: "Alexander", EnrollmentDate: "2005-09-01" },
     { ID: 2, FirstMidName: "Meredith", LastName: "Alonso", EnrollmentDate: "2002-09-01" }, 
     { ID: 3, FirstMidName: "Arturo", LastName: "Anand", EnrollmentDate: "2003-09-01" }, 
     { ID: 4, FirstMidName: "Gytis", LastName: "Barzdukas", EnrollmentDate: "2002-09-01" }, 
@@ -17,9 +18,32 @@ export class HomeComponent implements OnInit {
     { ID: 8, FirstMidName: "Nino", LastName: "Olivetto", EnrollmentDate: "2005-09-01" }
   ];
 
-  constructor() { }
+  std = this.students;
 
   ngOnInit() {
+
+  }
+
+  xoa(id){
+    for(let v = 0; v < this.std.length; v++){
+      if(this.std[v].ID === id){
+        this.std.splice(v,1);
+      }
+    }
+  }
+
+  searchName(id){
+    for(let v of this.std){
+      if(v.ID == id){
+        return v.FirstMidName + " " +v.LastName;
+      }
+    }
+  }
+
+  al(id){
+    if (confirm("Delete " + this.searchName(id) + "?")) {
+      this.xoa(id);
+    } else {}
   }
 
 }

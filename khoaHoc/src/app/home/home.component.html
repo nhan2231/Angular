@@ -3,21 +3,21 @@
         <a class="nav-link active" href="#">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Student</a>
+        <a class="nav-link">Student</a>
     </li>
 </ul>
 <div class="card">
     <h5 class="card-header">List Of Students</h5>
     <div class="card-body">
-        <p>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </p>
 
-        <table class="table ">
-            <thead class="th-dark">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+
+        <table class="table text-center table-hover ">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
@@ -25,16 +25,20 @@
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor = 'let info of students' >
+            <tbody class="">
+                <tr *ngFor="let info of std | paginate: {itemsPerPage:3, currentPage:p}">
                     <td>{{info.FirstMidName}}</td>
                     <td>{{info.LastName}}</td>
-                    <td>{{info.EnrollmentDay}}</td>
-                    <td></td>
+                    <td>{{info.EnrollmentDate}}</td>
+                    <td>
+                        <a [routerLink]="['/Home',info.ID]"><i class="fa fa-info"></i></a>
+                        <button class="btn" (click)="al(info.ID)"><i class="fa fa-trash"></i></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
+        <pagination-controls (pageChange)="p =$event"></pagination-controls>
 
     </div>
 </div>

@@ -1,1 +1,43 @@
-<p>sinh-vien works!</p>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link stdu" (click)='onBack()'>Student</a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link disabled" href="">{{info.FirstMidName}}</a>
+    </li>
+</ul>
+<div class="card">
+    <h5 class="card-header">List Of Students</h5>
+    <div class="card-body">
+        <p class="card-text">
+            First name: {{info.FirstMidName}}<br>
+        </p>
+        <p class="card-text">
+            Last name: {{info.LastName}}<br>
+        </p>
+        <p class="card-text">
+            Enroll date: {{info.EnrollmentDate}}
+        </p>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Course Title</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let p of enroll; index as i'>
+                    <td>{{cat[i].Title}}</td>
+                    <td>{{p.Grade}}</td>
+                    <td>{{cat[i].Credits}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
