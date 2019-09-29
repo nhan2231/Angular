@@ -1,0 +1,52 @@
+.logo{
+    margin-top: 10px;
+}
+.nav-item
+{
+    margin: auto 15px;
+}
+h1{
+    font-weight: 300;
+}
+hr
+{
+    width: 50%;
+}
+.main{
+    padding:5px 0 15px;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+.box
+{
+    text-align: center;
+    align-items: center;
+}
+.box h4, .box p {
+    color:#8c8c8c;
+}
+.activ3
+{
+    background-color: red;
+    border: 1px solid red;
+}
+.activ3 i{
+    color: white !important;
+}
+#h4{
+    color: red;
+    font-weight: 400;
+}
+.icon{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid grey;
+    left: 50%;
+    margin: 10px auto;
+    align-items: center;
+}
+.icon i{
+    line-height: 75px;
+    color: #bababa;
+}

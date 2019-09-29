@@ -1,4 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  collection = [];
+
+  constructor() { 
+    for(let i = 1; i <= 8; i++){
+      this.collection.push(`Angular ${i}.0`)
+    }
   }
 
   xoa(id){

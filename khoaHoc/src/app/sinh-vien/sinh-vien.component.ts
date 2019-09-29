@@ -61,9 +61,9 @@ export class SinhVienComponent implements OnInit {
     for (let p of this.enroll) {
       this.course.push(p.CourseID);
     }
-
-    for (let p = 0; p < this.course.length; p++) {
-      this.cat.push(this.courses.find(v => v.CourseID === this.course[p]));
+    
+    for (let p of this.course) {
+      this.cat.push(this.courses.find(v => v.CourseID === p));
     }
 
   }

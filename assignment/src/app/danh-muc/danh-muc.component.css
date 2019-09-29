@@ -1,0 +1,46 @@
+.middle{
+    margin-top: 20px;
+}
+.left{
+    padding: 15px;
+    padding-top: 0;
+    text-align: center;
+}
+.box{
+    padding: 15px;
+    padding-top: 0;
+    align-items: center;
+}
+.box img{
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+}
+.btn{
+    color: blue;
+}
+.btn:hover{
+    text-decoration: underline;
+    color: black;
+}
+.card {
+    text-align: center !important;
+}
+.i{
+    color: black !important;
+}
+.first-item{
+    background-color: #eee;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+}
+.icon{
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    height: 30px;
+    weight: 50px;
+    margin: 10px;
+    padding: 5px;
+}

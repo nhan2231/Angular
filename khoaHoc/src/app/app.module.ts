@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SinhVienComponent } from './sinh-vien/sinh-vien.component';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductListComponent } from './product-list/product-list.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SinhVienComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,

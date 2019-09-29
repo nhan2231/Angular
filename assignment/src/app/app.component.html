@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="banner">
+    <img src="/assets/images/banner.png">
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['danhMuc']" >Online Training <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['gioiThieu']">Giới thiệu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['lienHe']">Liên hệ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['gopY']">Gợi ý</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['hoiDap']">Hỏi đáp</a>
+        </li>
+      </ul>
+      <span ngbDropdown class="navbar-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Tài khoản
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/dangKy']">Đăng ký</a>
+          <a class="dropdown-item" [routerLink]="['/dangNhap']">Đăng nhập</a>
+          <a class="dropdown-item" [routerLink]="['/doiPass']">Đổi mật khẩu</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/capNhat']">Cập nhật tài khoản</a>
+          <a class="dropdown-item" [routerLink]="['']">Đăng xuất</a>
+        </div>
+      </span>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>
