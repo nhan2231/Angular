@@ -1,54 +1,54 @@
 <div class="row middle">
     <div class="left col-lg-8 col-sm-12">
 
-        <div class="card">
-            <div class="card-header">
-                <i class="fas fa-th-list"></i> XÂY DỰNG TRANG WEB
+        <div id="onTime">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-th-list"></i> XÂY DỰNG TRANG WEB<span
+                        class="badge badge-pill badge-primary float-right" id="minute">{{minute}}:{{second}}</span>
+                </div>
+                <div class="card-body height">
+                    <table class="table"
+                        *ngFor='let quest of questions | paginate: { itemsPerPage: bringOn, currentPage: page}'>
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <h5>{{page}}. {{quest.Text}}</h5>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="form-check" *ngFor='let ans of quest.Answers'>
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios1" value="ans.Id" (click)="check(ans.Id, page)">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            <h6 class="font">{{ans.Text}}</h6>
+                                        </label>
+                                    </div>
+
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="card-footer text-muted">
+                    MARK: {{mark()}} / {{questions.length}}
+                </div>
             </div>
-            <div class="card-body">
-                <p>1. Trong kỹ thuật chỉnh nâng cao có những kỹ thuật nào?
-                    <!-- <span class="badge badge-primary badge-pill float-right" id="minute"></span> -->
-                </p>
-                <hr>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="option1">
-                    <label class="form-check-label" for="exampleRadios1">
-                        Đối xứng
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Bẻ văn bản
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                        value="option3">
-                    <label class="form-check-label" for="exampleRadios3">
-                        Khối văn bản
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
-                        value="option4">
-                    <label class="form-check-label" for="exampleRadios4">
-                        Không đối xứng
-                    </label>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                MARK: 0/80
+            <button type="button" class="btn btn-info" (click)='NopBai()'>Nop bai</button>
+            <div class="footer">
+                <button type="button" class="btn btn-success" (click)='first()'>Len</button>
+                <button type="button" class="btn btn-danger" (click)='prevPage()'>Trai</button>
+                <button type="button" class="btn btn-warning" (click)='nextPage()'>Phai</button>
+                <button type="button" class="btn btn-info" (click)='last()'>Xuong</button>
             </div>
         </div>
 
-        <div class="footer">
-            <div class="icon"><a href="#"><i class="far fa-hand-point-up"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-right"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-left"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-down"></i></a></div>
+        <div id="outTime">
+            <h4>Điểm của bạn: {{mark()}} / {{questions.length}} </h4>
         </div>
 
     </div>

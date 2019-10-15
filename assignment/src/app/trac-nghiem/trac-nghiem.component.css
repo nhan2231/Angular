@@ -14,7 +14,21 @@
 .first-item{
     background-color: #eee;
 }
+.table{
+    margin: 0;
+    padding: 0;
+}
+.height{
+    min-height: 270px;
+}
+.font{
+    font-weight: 450 ;
+}
+#outTime{
+    visibility: hidden;
+}
 .footer{
+    margin-top: 50px;
     display: flex;
     justify-content: center;
 }
@@ -22,7 +36,7 @@
     border: 1px solid #aaa;
     border-radius: 5px;
     height: 30px;
-    weight: 50px;
+    font-weight: 50px;
     margin: 10px;
     padding: 5px;
 }
