@@ -1,48 +1,21 @@
 <div class="row middle">
-    <div class="left col-lg-8 col-sm-12">
+    <div class="left col-lg-8 col-sm-12" *ngIf='list'>
         <div class="row">
-            <div class="box col-lg-6">
+            <div class="box col-lg-6" *ngFor = 'let i of list | paginate: { itemsPerPage: 4, currentPage: p }'>
                 <div class="card" style="width: 100%;">
-                    <a [routerLink]="['/tracNghiem']"><img src="assets/images/ADUI.jpg" class="card-img-top" alt="..."></a>
+                    <a [routerLink]="['/tracNghiem',i.num]"><img src={{i.Logo}} class="card-img-top" alt="..."></a>
                     <div class="card-body">
-                        <p class="card-text">Lập trình Android nâng cao</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box col-lg-6">
-                <div class="card" style="width: 100%;">
-                    <a [routerLink]="['/tracNghiem']"><img src="assets/images/WEBU.jpg" class="card-img-top" alt="..."></a>
-                    <div class="card-body">
-                        <p class="card-text">Xây dựng trang web</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box col-lg-6">
-                <div class="card" style="width: 100%;">
-                    <a [routerLink]="['/tracNghiem']"><img src="assets/images/DBBS.png" class="card-img-top" alt="..."></a>
-                    <div class="card-body">
-                        <p class="card-text">Cơ sở dữ liệu</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box col-lg-6">
-                <div class="card" style="width: 100%;">
-                        <a [routerLink]="['/tracNghiem']"><img src="assets/images/DBAV.png" class="card-img-top" alt="..."></a>
-                    <div class="card-body">
-                        <p class="card-text">SQL server</p>
+                        <p class="card-text">{{i.Name}}</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <div class="icon"><a href="#"><i class="far fa-hand-point-up"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-right"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-left"></i></a></div>
-            <div class="icon"><a href="#"><i class="far fa-hand-point-down"></i></a></div>
+            <div class="icon"><a (click)='first()'><i class="far fa-hand-point-up"></i></a></div>
+            <div class="icon"><a (click)='next()'><i class="far fa-hand-point-right"></i></a></div>
+            <div class="icon"><a (click)='back()'><i class="far fa-hand-point-left"></i></a></div>
+            <div class="icon"><a (click)='last()'><i class="far fa-hand-point-down"></i></a></div>
         </div>
 
     </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionService }from '../services/question.service'
+import { NgxPaginationModule } from 'ngx-pagination'
 
 @Component({
   selector: 'app-danh-muc',
@@ -7,112 +9,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DanhMucComponent implements OnInit {
 
-  list = [
-    {
-        "Id": "ADAV",
-        "Name": "Lập trình Android nâng cao",
-        "Logo": "ADAV.jpg"
-    },
-    {
-        "Id": "ADBS",
-        "Name": "Lập trình Android cơ bản",
-        "Logo": "ADBS.jpg"
-    },
-    {
-        "Id": "ADTE",
-        "Name": "Kiểm thử và triển khai ứng dụng Android",
-        "Logo": "ADTE.jpg"
-    },
-    {
-        "Id": "ADUI",
-        "Name": "Thiết kế giao diện trên Android",
-        "Logo": "ADUI.jpg"
-    },
-    {
-        "Id": "ASNE",
-        "Name": "Lập trình ASP.NET",
-        "Logo": "ASNE.png"
-    },
-    {
-        "Id": "CLCO",
-        "Name": "Điện toán đám mây",
-        "Logo": "CLCO.jpg"
-    },
-    {
-        "Id": "DBAV",
-        "Name": "SQL Server",
-        "Logo": "DBAV.png"
-    },
-    {
-        "Id": "DBBS",
-        "Name": "Cơ sở dữ liệu",
-        "Logo": "DBBS.png"
-    },
-    {
-        "Id": "GAME",
-        "Name": "Lập trình game 2D",
-        "Logo": "GAME.png"
-    },
-    {
-        "Id": "HTCS",
-        "Name": "HTML5 và CSS3",
-        "Logo": "HTCS.jpg"
-    },
-    {
-        "Id": "INMA",
-        "Name": "Internet Marketing",
-        "Logo": "INMA.jpg"
-    },
-    {
-        "Id": "JAAV",
-        "Name": "Lập trình Java nâng cao",
-        "Logo": "JAAV.png"
-    },
-    {
-        "Id": "JABS",
-        "Name": "Lập trình hướng đối tượng với Java",
-        "Logo": "JABS.png"
-    },
-    {
-        "Id": "JSPR",
-        "Name": "Lập trình JavaScript",
-        "Logo": "JSPR.png"
-    },
-    {
-        "Id": "LAYO",
-        "Name": "Thiết kế layout",
-        "Logo": "LAYO.jpg"
-    },
-    {
-        "Id": "MOWE",
-        "Name": "Thiết kế web cho điện thoại di động",
-        "Logo": "MOWE.png"
-    },
-    {
-        "Id": "PHPP",
-        "Name": "Lập trình PHP",
-        "Logo": "PHPP.png"
-    },
-    {
-        "Id": "PMAG",
-        "Name": "Quản lý dự án với Agile",
-        "Logo": "PMAG.jpg"
-    },
-    {
-        "Id": "VBPR",
-        "Name": "Lập trình VB.NET",
-        "Logo": "VBPR.png"
-    },
-    {
-        "Id": "WEBU",
-        "Name": "Xây dựng trang web",
-        "Logo": "WEBU.jpg"
-    }
-]
+    lastPage: number
+    p: number = 1
+    list : any
 
-  constructor() { }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
-  }
+    // this.fb.GetBookList().snapshotChanges().subscribe(quest => {
+    //     quest.forEach(item => {
+    //         let a = item.payload.toJSON()
+    //         this.quizzes.push(a)
+    //     })
+    // })
+    this.questionService.getSubjects().subscribe(res =>{
+        this.list = res
+        this.lastPage = this.findLastPage()
+    })
+
+    }
+
+    first(){
+        this.p = 1;
+    }
+
+    next(){
+        if(this.p < this.lastPage){
+            this.p += 1
+        }
+    }
+
+    back(){
+        if(this.p > 1){
+            this.p -= 1
+        }
+    }
+
+    last(){
+        this.p = this.lastPage
+    }
+
+    findLastPage(){
+        if((this.list.length % 4) > 0){
+            return Math.floor((this.list.length/4) + 1)
+        }
+        else{
+            return Math.floor((this.list.length/4))
+        }
+    }
+
+    // getItems(){
+    //     this.questionService.getItems().subscribe(res =>{
+    //         this.questionsList = res
+    //     })}
 
 }
