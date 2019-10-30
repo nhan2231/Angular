@@ -35,7 +35,7 @@
 
                 </div>
                 <div class="card-footer text-muted">
-                    MARK: {{mark()}} / {{questions.length}}
+                    MARK: {{mark()}} / {{questionLength}}
                 </div>
             </div>
             <button type="button" class="btn btn-info" (click)='NopBai()'>Nop bai</button>
@@ -48,7 +48,7 @@
         </div>
 
         <div id="outTime">
-            <h4>Điểm của bạn: {{mark()}} / {{questions.length}} </h4>
+            <h4>Điểm của bạn: {{mark()}} / {{questionLength}} </h4>
         </div>
 
     </div>
@@ -59,8 +59,8 @@
                 <h6 class="card-title"><i class="fas fa-th-list"></i>DANH MỤC MÔN HỌC</h6>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" *ngFor='let i of listOfSubject'><a class="i"
-                        [routerLink]="['/tracNghiem']">{{i.Name}}</a></li>
+                <li class="list-group-item" *ngFor='let i of subjectsName'><a class="i"
+                        (click)='changeSubject(i.num)'>{{i.Name}}</a></li>
             </ul>
         </div>
     </div>

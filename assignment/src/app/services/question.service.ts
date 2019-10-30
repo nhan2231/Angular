@@ -24,7 +24,4 @@ export class QuestionService {
     return this.subjects
   }
 
-  getTheSubject(subjectName){
-    return this.subjectName = this.db.list('quizzes', ref => ref.orderByChild(subjectName).limitToFirst(1)).valueChanges()
-  }
 }

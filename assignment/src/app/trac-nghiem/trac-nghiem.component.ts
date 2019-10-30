@@ -14,59 +14,58 @@ export class TracNghiemComponent implements OnInit {
 
   listOfSubject : any
   idOfSubject: number
-  subjectName: string
+  subjectsName: any
 
+  questionLength: number
   questions: any
   answerSheet = []
   rightAnswer = []
 
-  constructor(private route: ActivatedRoute, private service: QuestionService) { 
+  constructor(private route: ActivatedRoute, private questionService: QuestionService) { 
 
   }
 
   ngOnInit() {
-
     this.route.paramMap.subscribe(param => {
       this.idOfSubject = +param.get('num')
     })
-    console.log(this.idOfSubject)
-    this.service.getSubjects().subscribe(x => {
+
+    this.questionService.getItems().subscribe(x => {
       this.listOfSubject = x
-    })
-    setTimeout(function(){alert(this.listOfSubject)},2000)
-    this.subjectName = this.listOfSubject.find(x => x.num == this.idOfSubject)
-
-    this.service.getTheSubject(this.subjectName).subscribe(x => {
-      this.questions = x
+      this.questions = this.listOfSubject[this.idOfSubject]
+      this.questionLength = this.questions.length
+      this.questions.forEach(x => this.answerSheet.push({ quizId: x.Id, answerId: 0 }))
+      this.questions.forEach(x => this.rightAnswer.push({ quizId: x.Id, answerId: x.AnswerId }))
     })
 
-    // var minute = 30;
-    // var second = 0;
-    // var count = setInterval(function () {
-    //   if (minute == 0 && second == 0) {
-    //     console.log(this.outOfTime)
-    //     document.getElementById('onTime').style.display = 'none'
-    //     document.getElementById('outTime').style.visibility = 'visible'
-    //     clearInterval(count)
-    //     window.confirm('Het gio lam bai')
-    //   }
-    //   else {
-    //     second -= 1
-    //     if (second < 0) {
-    //       minute -= 1;
-    //       second = 59;
-    //     }
-    //     document.getElementById('minute').innerHTML = minute + 'm: ' + second + 's';
-    //   }
-    // }, 1000);
+    this.questionService.getSubjects().subscribe(x => {
+      this.subjectsName = x
+    })
 
+    var minute = 30;
+    var second = 0;
+    var count = setInterval(function () {
+      if (minute == 0 && second == 0) {
+        console.log(this.outOfTime)
+        document.getElementById('onTime').style.display = 'none'
+        document.getElementById('outTime').style.visibility = 'visible'
+        clearInterval(count)
+        window.confirm('Het gio lam bai')
+      }
+      else {
+        second -= 1
+        if (second < 0) {
+          minute -= 1;
+          second = 59;
+        }
+        document.getElementById('minute').innerHTML = minute + 'm: ' + second + 's';
+      }
+    }, 1000);
     
-    // this.questions = this.service.getItems()
-    // // this.questions.forEach(x => this.answerSheet.push({ quizId: x.Id, answerId: 0 }))
-    // console.log(this.questions)
   }
+
   nextPage() {
-    if (this.questions.length / this.bringOn > this.page) {
+    if (this.questionLength / this.bringOn > this.page) {
       this.page++;
     }
   }
@@ -82,8 +81,8 @@ export class TracNghiemComponent implements OnInit {
   }
 
   last() {
-    let v = this.questions.length % this.bringOn;
-    let t = this.questions.length / this.bringOn;
+    let v = this.questionLength % this.bringOn;
+    let t = this.questionLength / this.bringOn;
     console.log(v);
     console.log(t);
     if (v == 0) {
@@ -97,13 +96,11 @@ export class TracNghiemComponent implements OnInit {
 
   mark() {
     let mark = 0
-    this.questions.forEach(x => this.rightAnswer.push({ quizId: x.Id, answerId: x.AnswerId }))
     for (let i = 0; i < this.rightAnswer.length; i++) {
       if (this.answerSheet[i].answerId == this.rightAnswer[i].answerId) {
         mark++;
       }
     }
-    this.rightAnswer = []
     return mark
   }
 
@@ -119,5 +116,21 @@ export class TracNghiemComponent implements OnInit {
     }
   }
 
+  changeSubject(id){
+    if(id !== this.idOfSubject){
+      if(window.confirm('Ban co chac la muon doi mon thi')){
+        this.idOfSubject = id
+        this.questions = this.listOfSubject[this.idOfSubject]
+        this.questionLength = this.questions.length
+        this.questions.forEach(x => this.answerSheet.push({ quizId: x.Id, answerId: 0 }))
+        this.questions.forEach(x => this.rightAnswer.push({ quizId: x.Id, answerId: x.AnswerId }))
+        this.page = 1  
+      }
+    }
+    else{
+      alert('Ban dang thi mon nay')
+    }
+  }
+  
 }
 
