@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination'
-import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireDatabaseModule } from '@angular/fire/database'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
@@ -41,6 +41,7 @@ import { DoiPassComponent } from './doi-pass/doi-pass.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     NgxPaginationModule,
     AngularFireModule.initializeApp(environment.firebase),

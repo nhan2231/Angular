@@ -1,72 +1,73 @@
-<form>
+<div [hidden]='!success'>Dang Ky Thanh cong</div>
+<form [formGroup]="form" (ngSubmit)='signUp()' [hidden]='success'>
+    Value: {{this.form.value | json}}
     <div class="form-group">
-        <label >Ten dang nhap</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Nhap ten">
+        <label>Ten dang nhap</label>
+        <input type="text" class="form-control" placeholder="Nhap ten" formControlName='username'>
+        <small style="color: red" *ngIf='username.invalid && username.touched'>Ten dang nhap khong hop le</small>
     </div>
+
     <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName='email' placeholder="hello@gmail.com">
+        <small *ngIf='email.valid' class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small style="color: red" *ngIf='email.invalid && email.touched'>Email khong hop le</small>
     </div>
+
     <div class="form-group">
-            <label >Ten day du</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Le Van Let">
-        </div>
+        <label>Ten day du</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp" formControlName='fullname'>
+        <small style="color: red" *ngIf='fullname.invalid && fullname.touched'>Ten khong hop le</small>
+    </div>
+
     <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <input type="password" class="form-control" id="exampleInputPassword1" formControlName='password' name='password'>
+        <small style="color: red" *ngIf="password.hasError('required') && password.touched">Mat khau khong hop le</small>
+        <small style="color: red" *ngIf="password.hasError('minlength')">Mat khau phai dai hon 6 ki tu</small>
     </div>
-    <div class="form-group">
+
+    <!-- <div class="form-group">
         <label for="exampleInputPassword1">Nhap lai Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-enter Password">
-    </div>
+        <input type="password" class="form-control" placeholder="Confirm Password" name='c-password' pattern="{{password.value}}">
+        <small style="color: red" *ngIf="!checkPass()">Mat khau khong trung</small>
+    </div> -->
+
     <fieldset class="form-group">
         <div class="row">
             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                        checked>
+                    <input class="form-check-input" type="radio" checked name="gender"  id="gridRadios1" value="true"
+                        formControlName='gender'>
                     <label class="form-check-label" for="gridRadios1">
                         Nam
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="false"
+                        formControlName='gender'>
                     <label class="form-check-label" for="gridRadios2">
                         Nu
                     </label>
                 </div>
-                <div class="form-check disabled">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3"
-                        disabled>
-                    <label class="form-check-label" for="gridRadios3">
-                        Bd
-                    </label>
-                </div>
+
             </div>
         </div>
+        <small style="color: red" *ngIf='gender.invalid'>Chon gioi tinh</small>
     </fieldset>
-    <div class="form-row">
-    <div class="col-auto">
-      <label for="validationDefault03">Ngay sinh</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="01" required>
+
+    <div class="form-group">
+        <label>Ngay sinh</label>
+        <input type="date" class="form-control" aria-describedby="emailHelp" formControlName='birthday'>
     </div>
-    <div class="col-auto">
-      <label for="validationDefault04">Thang</label>
-      <input type="text" class="form-control" id="validationDefault04" placeholder="01" required>
-    </div>
-    <div class="col-auto">
-      <label for="validationDefault05">Nam</label>
-      <input type="text" class="form-control" id="validationDefault05" placeholder="2000" required>
-    </div>
-  </div>
+    <small style="color: red" *ngIf='birthday.invalid && password.touched'>Ngay sinh khong hop le</small>
+
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="submit" class="btn btn-primary" [disabled]='form.invalid'>Submit</button>
+
 </form>

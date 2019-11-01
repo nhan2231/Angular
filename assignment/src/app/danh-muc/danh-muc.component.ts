@@ -14,7 +14,7 @@ export class DanhMucComponent implements OnInit {
     list: any
     listB: any
 
-    constructor(private questionService: QuestionService) { }
+    constructor(private service: QuestionService) { }
 
     ngOnInit() {
         // this.fb.GetBookList().snapshotChanges().subscribe(quest => {
@@ -23,7 +23,7 @@ export class DanhMucComponent implements OnInit {
         //         this.quizzes.push(a)
         //     })
         // })
-        this.questionService.getSubjects().subscribe(res => {
+        this.service.getSubjects().subscribe(res => {
             this.list = res
             this.lastPage = this.findLastPage()
         })

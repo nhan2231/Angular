@@ -28,17 +28,20 @@
           Tài khoản
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['/dangKy']">Đăng ký</a>
-          <a class="dropdown-item" [routerLink]="['/dangNhap']">Đăng nhập</a>
-          <a class="dropdown-item" [routerLink]="['/doiPass']">Đổi mật khẩu</a>
+          <a class="dropdown-item" [routerLink]="['/dangKy']" *ngIf='!service.loggedIn'>Đăng ký</a>
+          <a class="dropdown-item" [routerLink]="['/dangNhap']" *ngIf='!service.loggedIn'>Đăng nhập</a>
+          <a class="dropdown-item" [routerLink]="['/doiPass']" *ngIf='service.loggedIn'>Đổi mật khẩu</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/capNhat']">Cập nhật tài khoản</a>
-          <a class="dropdown-item" [routerLink]="['']">Đăng xuất</a>
+          <a class="dropdown-item" [routerLink]="['/capNhat']" *ngIf='service.loggedIn'>Cập nhật tài khoản</a>
+          <a class="dropdown-item" [routerLink]="['']" *ngIf='service.loggedIn' (click)='service.logOut()'>Đăng xuất</a>
         </div>
       </span>
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
 
 </div>
