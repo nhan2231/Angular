@@ -1,24 +1,53 @@
-<div [hidden]='!success'>Dang Ky Thanh cong</div>
-<form [formGroup]="form" (ngSubmit)='signUp()' [hidden]='success'>
-    Value: {{this.form.value | json}}
-    <div class="form-group">
-        <label>Ten dang nhap</label>
-        <input type="text" class="form-control" placeholder="Nhap ten" formControlName='username'>
-        <small style="color: red" *ngIf='username.invalid && username.touched'>Ten dang nhap khong hop le</small>
+<div [hidden]='!success'>
+    <div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="fas fa-check-circle"></i>
+				</div>				
+				<h4 class="modal-title">Awesome!</h4>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center">Đăng ký thành công.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" [routerLink]="['/dangNhap']">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<form [formGroup]="form" (ngSubmit)='signUp(form2.username, form2.email)' [hidden]='success'>
+    <!-- Value: {{this.form.value | json}} -->
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label>Ten dang nhap</label>
+            <input type="text" class="form-control" placeholder="Nhap ten" formControlName='username' [(ngModel)]="form2.username">
+            <small style="color: red" *ngIf='username.invalid && username.touched'>Ten dang nhap khong hop le</small>
+        </div>
+    
+        <div class="form-group col-sm-6">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName='email' placeholder="hello@gmail.com" [(ngModel)]="form2.email">
+            <small *ngIf='email.valid' class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small style="color: red" *ngIf='email.invalid && email.touched'>Email khong hop le</small>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" formControlName='email' placeholder="hello@gmail.com">
-        <small *ngIf='email.valid' class="form-text text-muted">We'll never share your email with anyone else.</small>
-        <small style="color: red" *ngIf='email.invalid && email.touched'>Email khong hop le</small>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label>Ten day du</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" formControlName='fullname'>
+            <small style="color: red" *ngIf='fullname.invalid && fullname.touched'>Ten khong hop le</small>
+        </div>
+    
+        <div class="form-group col-sm-6">
+            <label>Ngay sinh</label>
+            <input type="date" class="form-control" aria-describedby="emailHelp" formControlName='birthday'>
+            <small style="color: red" *ngIf='birthday.invalid && password.touched'>Ngay sinh khong hop le</small>
+        </div>
     </div>
+    
 
-    <div class="form-group">
-        <label>Ten day du</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp" formControlName='fullname'>
-        <small style="color: red" *ngIf='fullname.invalid && fullname.touched'>Ten khong hop le</small>
-    </div>
 
     <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
@@ -57,12 +86,7 @@
         <small style="color: red" *ngIf='gender.invalid'>Chon gioi tinh</small>
     </fieldset>
 
-    <div class="form-group">
-        <label>Ngay sinh</label>
-        <input type="date" class="form-control" aria-describedby="emailHelp" formControlName='birthday'>
-    </div>
-    <small style="color: red" *ngIf='birthday.invalid && password.touched'>Ngay sinh khong hop le</small>
-
+    
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>

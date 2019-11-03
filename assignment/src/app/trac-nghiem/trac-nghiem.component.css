@@ -32,6 +32,9 @@
     display: flex;
     justify-content: center;
 }
+.bt{
+    margin: auto 10px !important;
+}
 .icon{
     border: 1px solid #aaa;
     border-radius: 5px;

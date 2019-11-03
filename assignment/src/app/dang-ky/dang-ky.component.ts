@@ -13,10 +13,13 @@ export class DangKyComponent implements OnInit {
   form: FormGroup
   submitted = false
   studentList: Student[]
-  keys: any
+  form2 = {
+    username: '',
+    email: ''
+  }
 
   success = false
-  constructor(private service: QuestionService, private formBuilder: FormBuilder, private fb: AngularFireDatabase) { }
+  constructor(private service: QuestionService, private formBuilder: FormBuilder, private fb: AngularFireDatabase,) { }
 
   ngOnInit() {
     this.service.getUser().subscribe(user => {
@@ -24,24 +27,24 @@ export class DangKyComponent implements OnInit {
     })
 
     this.form = this.formBuilder.group({
-      username: ['',[
+      username: ['', [
         Validators.required,
       ]],
-      email: ['',[
+      email: ['', [
         Validators.required,
         Validators.email
       ]],
-      fullname: ['',[
+      fullname: ['', [
         Validators.required,
       ]],
-      gender: ['',[
+      gender: ['', [
         Validators.required
       ]],
-      password: ['',[
+      password: ['', [
         Validators.required,
         Validators.minLength(6)
       ]],
-      birthday: ['',[
+      birthday: ['', [
         Validators.required
       ]],
       marks: 0,
@@ -63,38 +66,70 @@ export class DangKyComponent implements OnInit {
   //   return true
   // }
 
-  signUp() {
-    const value = this.form.value
-    try{
-      this.fb.list('student').push(value)
-      this.success = true
+  signUp(name, email) {
+    if (this.checkName(name)) {
+      alert('Ten dang nhap nay da duoc su dung')
     }
-    catch(e){
-      console.log(e)
+    else {
+      if (this.checkEmail(email)) {
+        alert('Email nay da duoc su dung')
+      }
+      else {
+        const value = this.form.value
+        try {
+          this.fb.list('student').push(value)
+          this.success = true
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
     }
   }
 
-  get username(){
+  checkName(name) {
+    let i = false
+    this.studentList.forEach(x => {
+      if (name == x.username) {
+        console.log(name)
+        i = true
+      }
+    })
+    return i
+  }
+
+  checkEmail(email) {
+    let i = false
+    this.studentList.forEach(x => {
+      if (email == x.email) {
+        console.log(email)
+        i = true
+      }
+    })
+    return i
+  }
+
+  get username() {
     return this.form.get('username')
   }
 
-  get email(){
+  get email() {
     return this.form.get('email')
   }
 
-  get fullname(){
+  get fullname() {
     return this.form.get('fullname')
   }
 
-  get password(){
+  get password() {
     return this.form.get('password')
   }
 
-  get birthday(){
+  get birthday() {
     return this.form.get('birthday')
   }
 
-  get gender(){
+  get gender() {
     return this.form.get('gender')
   }
 

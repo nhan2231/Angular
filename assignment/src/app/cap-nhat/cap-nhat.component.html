@@ -1,28 +1,29 @@
-<form>
+<form >
         <div class="form-group">
             <label for="exampleInputEmail1">Cap nhat Email</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
+                placeholder="Enter email" [(ngModel)]="form.email" [ngModelOptions]="{standalone: true}">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
                 <label >Cap nhat ten</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Le Van Let">
+                    placeholder="Le Van Let" [(ngModel)]="form.fullname" [ngModelOptions]="{standalone: true}">
             </div>
         <fieldset class="form-group">
             <div class="row">
                 <legend class="col-form-label col-sm-2 pt-0">Cap nhat Gender</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                            checked>
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="true"
+                             [(ngModel)]="form.gender" [ngModelOptions]="{standalone: true}">
                         <label class="form-check-label" for="gridRadios1">
                             Nam
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="false"
+                        [(ngModel)]="form.gender" [ngModelOptions]="{standalone: true}">
                         <label class="form-check-label" for="gridRadios2">
                             Nu
                         </label>
@@ -37,20 +38,14 @@
                 </div>
             </div>
         </fieldset>
-        <div class="form-row">
-        <div class="col-auto">
-          <label for="validationDefault03">Ngay sinh</label>
-          <input type="text" class="form-control" id="validationDefault03" placeholder="01" required>
+        
+        <div class="form-group">
+            <label>Ngay sinh</label>
+            <input type="date" class="form-control" aria-describedby="emailHelp" 
+            [(ngModel)]="form.birthday" [ngModelOptions]="{standalone: true}">
         </div>
-        <div class="col-auto">
-          <label for="validationDefault04">Thang</label>
-          <input type="text" class="form-control" id="validationDefault04" placeholder="01" required>
-        </div>
-        <div class="col-auto">
-          <label for="validationDefault05">Nam</label>
-          <input type="text" class="form-control" id="validationDefault05" placeholder="2000" required>
-        </div>
-      </div>
+        <!-- <small style="color: red" *ngIf='birthday.invalid && password.touched'>Ngay sinh khong hop le</small> -->
+
       <p></p>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" (click)='changeInfo()'>Submit</button>
     </form>

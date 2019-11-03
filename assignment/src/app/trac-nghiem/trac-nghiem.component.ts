@@ -11,7 +11,9 @@ import { makeRe } from 'minimatch';
 export class TracNghiemComponent implements OnInit {
   page = 1;
   bringOn = 1;
+  loggedIn: boolean = false
 
+  user: any
   listOfSubject : any
   idOfSubject: number
   subjectsName: any
@@ -30,6 +32,9 @@ export class TracNghiemComponent implements OnInit {
       this.idOfSubject = +param.get('num')
     })
 
+    this.loggedIn = this.questionService.loggedIn
+    this.user = this.questionService.user
+
     this.questionService.getItems().subscribe(x => {
       this.listOfSubject = x
       this.questions = this.listOfSubject[this.idOfSubject]
@@ -44,6 +49,8 @@ export class TracNghiemComponent implements OnInit {
 
     var minute = 30;
     var second = 0;
+    
+    window.clearInterval(localStorage['idleInterval'])
     var count = setInterval(function () {
       if (minute == 0 && second == 0) {
         console.log(this.outOfTime)
@@ -60,9 +67,11 @@ export class TracNghiemComponent implements OnInit {
         }
         document.getElementById('minute').innerHTML = minute + 'm: ' + second + 's';
       }
-    }, 1000);
-    
+    }, 1000)
+    window.localStorage['idleInterval'] = count;
   }
+
+
 
   nextPage() {
     if (this.questionLength / this.bringOn > this.page) {
@@ -109,28 +118,32 @@ export class TracNghiemComponent implements OnInit {
   }
 
   NopBai() {
-    const nop = window.confirm('ban co chac la muon nop bai')
-    if (nop == true) {
       document.getElementById('onTime').style.display = 'none'
       document.getElementById('outTime').style.visibility = 'visible'
-    }
+      window.clearInterval(localStorage['idleInterval'])
   }
 
-  changeSubject(id){
-    if(id !== this.idOfSubject){
-      if(window.confirm('Ban co chac la muon doi mon thi')){
-        this.idOfSubject = id
-        this.questions = this.listOfSubject[this.idOfSubject]
-        this.questionLength = this.questions.length
-        this.questions.forEach(x => this.answerSheet.push({ quizId: x.Id, answerId: 0 }))
-        this.questions.forEach(x => this.rightAnswer.push({ quizId: x.Id, answerId: x.AnswerId }))
-        this.page = 1  
-      }
-    }
-    else{
-      alert('Ban dang thi mon nay')
-    }
+  LuuDiem(){
+    this.questionService.saveMark(this.user.key, this.mark() + '/' + this.questionLength)
+    this.questionService.user.marks = this.mark() 
+    alert('Đã lưu điểm của bạn')
   }
+
+  // changeSubject(id){
+  //   if(id !== this.idOfSubject){
+  //     if(window.confirm('Ban co chac la muon doi mon thi')){
+  //       this.idOfSubject = id
+  //       this.questions = this.listOfSubject[this.idOfSubject]
+  //       this.questionLength = this.questions.length
+  //       this.questions.forEach(x => this.answerSheet.push({ quizId: x.Id, answerId: 0 }))
+  //       this.questions.forEach(x => this.rightAnswer.push({ quizId: x.Id, answerId: x.AnswerId }))
+  //       this.page = 1  
+  //     }
+  //   }
+  //   else{
+  //     alert('Ban dang thi mon nay')
+  //   }
+  // }
   
 }
 

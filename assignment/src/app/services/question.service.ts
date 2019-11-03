@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 // import {Question} from '../models/services'
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
 import { Observable } from 'rxjs'
+import { Student } from '../services/Student'
 import { map } from 'rxjs/operators'
+import { by } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
   // questionsCollection: AngularFirestoreCollection<any>
-  user: any
+  user: Student
   loggedIn: boolean = false
   questions: Observable<any[]>
   subjects: Observable<any[]>
@@ -51,13 +53,25 @@ export class QuestionService {
   }
 
   updatePassword(key, pass) {
-    const itemsRef = this.db.list('student');
-    itemsRef.update(key, { password: pass });
+    const studentsRef = this.db.list('student');
+    studentsRef.update(key, { password: pass });
   }
 
+  updateInfo(key, email, fullname, gender, birthday){
+    const studentsRef = this.db.list('student')
+    studentsRef.update(key,{email: email, gender: gender, fullname: fullname, birthday: birthday})
+  }
+  
   logOut() {
     this.user = null;
     // localStorage.removeItem('user')
     this.loggedIn = false
+    alert('God by, xee yuo agein!')
   }
+
+  saveMark(key, mark){
+    const studentsRef = this.db.list('student');
+    studentsRef.update(key, { marks: mark });
+  }
+
 }

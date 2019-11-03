@@ -15,16 +15,16 @@ export class DoiPassComponent implements OnInit {
   
   ngOnInit() {
     this.user = this.service.user
-    console.log(this.user.key)
   }
 
   changePass(){
     if(this.password !== this.user.password){
-      alert ('mat khau sai')
+      alert ('Sai mật khẩu cũ')
     }
     else {
       this.service.updatePassword(this.user.key, this.new_password)
-      alert('oh yeah')
+      this.service.user.password = this.new_password
+      alert('Đổi password thành công')
     }
   }
 

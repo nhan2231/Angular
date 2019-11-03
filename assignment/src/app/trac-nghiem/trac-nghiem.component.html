@@ -1,5 +1,3 @@
-<div class="row middle">
-    <div class="left col-lg-8 col-sm-12">
 
         <div id="onTime">
             <div class="card">
@@ -36,24 +34,26 @@
                 </div>
                 <div class="card-footer text-muted">
                     MARK: {{mark()}} / {{questionLength}}
+                    <button type="button" class="btn btn-success float-right" (click)='NopBai()'>Nop bai</button>
                 </div>
             </div>
-            <button type="button" class="btn btn-info" (click)='NopBai()'>Nop bai</button>
+            
             <div class="footer">
-                <button type="button" class="btn btn-success" (click)='first()'>Len</button>
-                <button type="button" class="btn btn-danger" (click)='prevPage()'>Trai</button>
-                <button type="button" class="btn btn-warning" (click)='nextPage()'>Phai</button>
-                <button type="button" class="btn btn-info" (click)='last()'>Xuong</button>
+                <button type="button" class="btn btn-success bt" (click)='first()'>First</button>
+                <button type="button" class="btn btn-danger bt" (click)='prevPage()'>Prev</button>
+                <button type="button" class="btn btn-warning bt" (click)='nextPage()'>Next</button>
+                <button type="button" class="btn btn-info bt" (click)='last()'>Last</button>
             </div>
         </div>
 
         <div id="outTime">
             <h4>Điểm của bạn: {{mark()}} / {{questionLength}} </h4>
+            <button type="button" *ngIf='loggedIn' class="btn btn-danger" (click)='LuuDiem()'>Lưu điểm</button>
         </div>
 
-    </div>
 
-    <div class="right col-lg-4 col-sm-12">
+
+    <!-- <div class="right col-lg-4 col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h6 class="card-title"><i class="fas fa-th-list"></i>DANH MỤC MÔN HỌC</h6>
@@ -63,5 +63,5 @@
                         (click)='changeSubject(i.num)'>{{i.Name}}</a></li>
             </ul>
         </div>
-    </div>
-</div>
+    </div> -->
+

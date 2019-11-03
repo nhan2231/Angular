@@ -28,7 +28,6 @@ export class DangNhapComponent implements OnInit {
   ngOnInit() {
     this.service.getUserAndKeys().subscribe(user => {
       this.studentList = user
-      console.log(this.studentList)
     })
   }
 
@@ -40,12 +39,11 @@ export class DangNhapComponent implements OnInit {
           const user = x
           i = true
           this.service.isLoggedIn(user)
-          console.log(this.service.user)
-          // this.router.navigate(['danhMuc'])
+          this.router.navigate(['danhMuc'])
         }
       }
     })
-    if(!i){alert('sai mk hoac ten dang nhap')}
+    if(!i){alert('Sai tên hoặc mật khẩu')}
   }
   
 

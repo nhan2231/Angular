@@ -42,5 +42,6 @@
     height: 30px;
     weight: 50px;
     margin: 10px;
+    cursor: pointer;
     padding: 5px;
 }
